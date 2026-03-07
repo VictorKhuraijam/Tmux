@@ -1,0 +1,193 @@
+# https://starship.rs/config/
+# fredericrous — blue gradient edition
+
+format = """
+$username\
+$directory\
+$git_branch\
+$git_status\
+$golang\
+$java\
+$kotlin\
+$nodejs\
+$python\
+$ruby\
+$rust\
+$scala\
+$swift\
+$php\
+$ocaml\
+$terraform\
+$helm\
+$vagrant\
+$docker_context\
+$kubernetes\
+$aws\
+$shlvl
+$character"""
+
+command_timeout = 1000
+right_format = """⏱  $time"""
+
+# ── Palette (light → dark blue gradient, left to right) ──────────────────────
+# seg1  username    #bfdbfe  blue-200
+# seg2  directory   #60a5fa  blue-400
+# seg3  git_branch  #3b82f6  blue-500
+# seg4  git_status  #1d4ed8  blue-700
+# seg5  tools       #1e3a8a  blue-900
+# seg6  k8s/aws     #172554  blue-950
+
+[time]
+disabled = false
+style = "#93c5fd"
+format = "[$time]($style)"
+
+[character]
+success_symbol = "[❯](#60a5fa)"
+error_symbol = "[✗](#ef4444)"
+
+[cmd_duration]
+style = "#60a5fa"
+format = "[ ⏱ $duration](fg:black bg:$style)[](fg:$style)"
+
+# ── Identity ──────────────────────────────────────────────────────────────────
+[username]
+style_user = "#bfdbfe"
+style_root = "#ef4444"
+format = "[$user](fg:black bg:$style)[](fg:$style)[](fg:#052479)"
+
+# ── Directory ─────────────────────────────────────────────────────────────────
+[directory]
+style = "#60a5fa"
+truncation_length = 3
+truncate_to_repo = false
+fish_style_pwd_dir_length = 1
+read_only = "󰌾 "
+format = "[$path[$read_only](fg:black bg:$style)](fg:black bg:$style)[](fg:$style)[](fg:#052479)"
+
+# ── Git ───────────────────────────────────────────────────────────────────────
+[git_branch]
+style = "#3b82f6"
+truncation_length = 20
+truncation_symbol = "..."
+format = "[ $symbol$branch](fg:black bg:$style)[](fg:$style)[](fg:#052479 )"
+
+[git_commit]
+style = "#2563eb"
+format = "\b[\\($hash$tag\\)](fg:black bg:$style)[](fg:$style)[ ](bg:$style)"
+
+[git_state]
+style = "#2563eb"
+format = "\b[\\($state( $progress_current/$progress_total)\\)](fg:black bg:$style)[](fg:$style)[ ](bg:$style)"
+
+[git_status]
+style = "#1d4ed8"
+# all indicators use white text on blue-800 for visibility
+conflicted = "[](fg:black bg:#1e40af)[󰞇 ${count} ](fg:#fca5a5 bg:#1e40af)"
+staged     = "[󰐖 $count ](fg:#bbf7d0 bg:#1e40af)"
+modified   = "[󰏫 ${count} ](fg:#fef08a bg:#1e40af)"
+renamed    = "[󰑕 ${count} ](fg:#e0f2fe bg:#1e40af)"
+deleted    = "[󰆴 ${count} ](fg:#fca5a5 bg:#1e40af)"
+untracked  = "[󰋗 ${count} ](fg:#e0f2fe bg:#1e40af)"
+stashed    = "[󰏗 ${count} ](fg:#e0f2fe bg:#1e40af)"
+ahead      = "[󰶣 ${count} ](fg:#bbf7d0 bg:#1e40af)"
+behind     = "[󰶡 ${count} ](fg:#fca5a5 bg:#1e40af)"
+diverged   = "[󰹺 ](fg:#fca5a5 bg:#1e40af)[󰶣 ${ahead_count} ](fg:#bbf7d0 bg:#1e40af)[󰶡 ${behind_count} ](fg:#fca5a5 bg:#1e40af)"
+format     = "($conflicted$staged$modified$renamed$deleted$untracked$stashed$ahead$behind$diverged[](fg:#1e40af)[](fg:#052479 ))"
+
+# ── Language / Tool segments (blue-900 bg for contrast) ──────────────────────
+[golang]
+symbol = "󰟓 "
+style = "fg:#bfdbfe bg:#1e3a8a"
+format = "[$symbol$version]($style)[](fg:#1e3a8a)[](fg:#052479 bg:#1e3a8a)"
+
+[java]
+symbol = "󰬷 "
+style = "fg:#bfdbfe bg:#1e3a8a"
+format = "[$symbol$version]($style)[](fg:#1e3a8a)[](fg:#052479 bg:#1e3a8a)"
+
+[kotlin]
+symbol = "󱈙 "
+style = "fg:#bfdbfe bg:#1e3a8a"
+format = "[$symbol$version]($style)[](fg:#1e3a8a)[](fg:#052479 bg:#1e3a8a)"
+
+[nodejs]
+symbol = "󰎙 "
+style = "fg:#bfdbfe bg:#1e3a8a"
+format = "[$symbol$version]($style)[](fg:#1e3a8a)[](fg:#052479 bg:#1e3a8a)"
+
+[python]
+symbol = "󰌠 "
+style = "fg:#bfdbfe bg:#1e3a8a"
+format = "[$symbol$pyenv_prefix$version$virtualenv]($style)[](fg:#1e3a8a)[](fg:#052479 bg:#1e3a8a)"
+
+[ruby]
+symbol = "󰴭 "
+style = "fg:#bfdbfe bg:#1e3a8a"
+format = "[$symbol$version]($style)[](fg:#1e3a8a)[](fg:#052479 bg:#1e3a8a)"
+
+[rust]
+symbol = "󱘗 "
+style = "fg:#bfdbfe bg:#1e3a8a"
+format = "[$symbol$version]($style)[](fg:#1e3a8a)[](fg:#052479 bg:#1e3a8a)"
+
+[scala]
+symbol = "󰝖 "
+style = "fg:#bfdbfe bg:#1e3a8a"
+format = "[$symbol$version]($style)[](fg:#1e3a8a)[](fg:#052479 bg:#1e3a8a)"
+
+[swift]
+symbol = "󰛥 "
+style = "fg:#bfdbfe bg:#1e3a8a"
+format = "[$symbol$version]($style)[](fg:#1e3a8a)[](fg:#052479 bg:#1e3a8a)"
+
+[php]
+symbol = "󰌟 "
+style = "fg:#bfdbfe bg:#1e3a8a"
+format = "[$symbol$version]($style)[](fg:#1e3a8a)[](fg:#052479 bg:#1e3a8a)"
+
+[ocaml]
+style = "fg:#bfdbfe bg:#1e3a8a"
+format = "[$symbol$version]($style)[](fg:#1e3a8a)[](fg:#052479 bg:#1e3a8a)"
+
+[terraform]
+symbol = "󱁢 "
+style = "fg:#bfdbfe bg:#1e3a8a"
+format = "[$symbol$workspace]($style)[](fg:#1e3a8a)[](fg:#052479 bg:#1e3a8a)"
+
+[helm]
+style = "fg:#bfdbfe bg:#1e3a8a"
+format = "[$symbol$version]($style)[](fg:#1e3a8a)[](fg:#052479 bg:#1e3a8a)"
+
+[vagrant]
+style = "fg:#bfdbfe bg:#1e3a8a"
+format = "[$symbol$version]($style)[](fg:#1e3a8a)[](fg:#052479 bg:#1e3a8a)"
+
+# ── Infrastructure ────────────────────────────────────────────────────────────
+[docker_context]
+symbol = "󰡨  "
+style = "fg:#bfdbfe bg:#172554"
+format = "[$symbol$context]($style)[](fg:#172554)[](fg:#052479 bg:#172554)"
+
+[kubernetes]
+symbol = "󱃾 "
+format = "[󱃾 $context](fg:#bfdbfe bg:#172554)[](fg:#172554)[](fg:#052479 bg:#172554)"
+disabled = false
+
+[aws]
+symbol = "󰸏 "
+style = "fg:#bfdbfe bg:#172554"
+format = "[$symbol$profile]($style)[](fg:#172554)[](fg:#052479 bg:#172554)"
+
+# ── Shell level ───────────────────────────────────────────────────────────────
+[shlvl]
+symbol = "󰘧 "
+style = "fg:#bfdbfe bg:#172554"
+format = "[$symbol$shlvl]($style)[](fg:#172554)[](fg:#052479 bg:#172554)"
+disabled = true
+
+[package]
+disabled = true
+
+[shell]
+disabled = true
